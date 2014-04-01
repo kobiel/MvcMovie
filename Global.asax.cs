@@ -17,5 +17,20 @@ namespace MvcMovie
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+        {
+            filters.Add(new HandleErrorAttribute());
+        }
+
+        public static void RegisterRoutes(RouteCollection routes)
+        {
+            routes.IgnoreRoute("{resorce}.axd/{pathInfo}");
+            routes.MapRoute(
+                "Default",// Route name
+                "{controller}/{action}/{id}",// URL with parameters
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional }// Parameters defaults
+                );
+        }
     }
 }
